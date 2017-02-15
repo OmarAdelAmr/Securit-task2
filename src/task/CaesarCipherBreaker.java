@@ -18,7 +18,6 @@ public class CaesarCipherBreaker implements CipherBreaker
 	@Override
 	public String getPlainText()
 	{
-		// TODO Auto-generated method stub
 
 		return plain_text;
 	}
@@ -26,7 +25,6 @@ public class CaesarCipherBreaker implements CipherBreaker
 	@Override
 	public String getKey()
 	{
-		// TODO Auto-generated method stub
 		return key;
 	}
 
@@ -64,21 +62,9 @@ public class CaesarCipherBreaker implements CipherBreaker
 		key = temp_key + "";
 	}
 
-	public static void main(String[] args)
-	{
-		CaesarCipherBreaker y = new CaesarCipherBreaker();
-		y.setCipherText("DWZGDZQZOCVODHVBDIVODJIDNNOMJIBZMOCVIFIJRGZYBZOCVOHTOCDNHJMZKJOZIOOC"
-				+ "VICDNOJMTOCVOYMZVHNVMZHJMZKJRZMAPGOCVIAVXONOCVOCJKZVGRVTNOMDPHKCNJQZMZSKZMDZI"
-				+ "XZOCVOGVPBCOZMDNOCZJIGTXPMZAJMBMDZAVIYDWZGDZQZOCVOGJQZDNNOMJIBZMOCVIYZVOC");
-		y.decipherText();
-		System.out.println(y.plain_text);
-
-	}
-
 	@Override
 	public int computeKeyLength()
 	{
-		// TODO Auto-generated method stub
 		return 0;
 	}
 

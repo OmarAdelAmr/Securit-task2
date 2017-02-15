@@ -17,6 +17,40 @@ public class VigenereCipherBreaker implements CipherBreaker
 	@Override
 	public int computeKeyLength()
 	{
+
+		double total_IC = 0.0;
+		for (int i = 1; i <= 20; i++)
+		{
+			double IC = 0.0;
+			String[] subString_arr = new String[i];
+			for (int j = 0; j < subString_arr.length; j++)
+			{
+				subString_arr[j] = "";
+			}
+			int counter = 0;
+			for (int j = 0; j < cipherText.length(); j++)
+			{
+				if (counter >= subString_arr.length)
+				{
+					counter = 0;
+				}
+				subString_arr[counter] = subString_arr[counter] + cipherText.charAt(j);
+				counter++;
+			}
+
+			for (int j = 0; j < subString_arr.length; j++)
+			{
+				IC += calculate_ic(subString_arr[j]);
+			}
+
+			total_IC += (IC / i);
+
+		}
+		return helper_computeKeyLength(total_IC / 20.0);
+	}
+
+	public int helper_computeKeyLength(double input_avg_IC)
+	{
 		int first_key_more_peek = -1;
 		A: for (int i = 1; i <= 20; i++)
 		{
@@ -43,7 +77,7 @@ public class VigenereCipherBreaker implements CipherBreaker
 			}
 
 			double avg_ic = IC / i;
-			if (avg_ic > 0.055)
+			if (avg_ic > 0.055 && avg_ic > input_avg_IC)
 			{
 				first_key_more_peek = i;
 				break A;
